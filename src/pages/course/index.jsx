@@ -1,7 +1,9 @@
 import React from "react";
 import ListCourse from "../../components/ListCourse";
+import { useScrollTop } from "@/hooks/useScrollTop";
 
 function Course() {
+    useScrollTop();
     return (
         <main id='main'>
             <section className='section-1'>

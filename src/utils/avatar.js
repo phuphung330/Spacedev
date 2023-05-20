@@ -3,7 +3,7 @@ export const AvatarConfig = (user) => {
     if (user === null) {
         return avatarDefault;
     }
-    if (user.avatar === null) {
+    if (user.avatar === null || user.avatar === undefined) {
         user.avatar = avatarDefault;
     }
     return user.avatar;

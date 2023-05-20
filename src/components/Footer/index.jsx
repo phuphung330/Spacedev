@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { PATH } from "@/config/path";
 
 function Footer() {
     return (
@@ -31,18 +33,18 @@ function Footer() {
                             <nav>
                                 <ul>
                                     <li>
-                                        <a href='./'>Trang chủ</a>
+                                        <Link to={PATH.home}>Trang chủ</Link>
                                     </li>
                                     <li>
-                                        <a href='./course-list.html'>
-                                            Khóa Học
-                                        </a>
+                                        <Link to={PATH.course}>Khóa Học</Link>
                                     </li>
                                     <li>
-                                        <a href='#'>Thanh toán</a>
+                                        <Link to={PATH.payment}>
+                                            Thanh toán
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href='#'>Điều khoản</a>
+                                        <Link to={PATH.coin}>Điều khoản</Link>
                                     </li>
                                 </ul>
                             </nav>

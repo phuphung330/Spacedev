@@ -1,15 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import Field from "../../components/Field/index";
-import { required, regexp } from "../../utils/validate";
-import { useForm } from "../../hooks/useForm";
+import Field from "@/components/Field/index";
+import { required, regexp } from "@/utils/validate";
+import { useForm } from "@/hooks/useForm";
 import { useParams } from "react-router-dom";
-import { courseService } from "../../services/course";
+import { courseService } from "@/services/course";
 import { useScrollTop } from "../../hooks/useScrollTop";
-import { Currency } from "../../utils/currency";
+import { Currency } from "@/utils/currency";
 import { useEffect } from "react";
-import { useFetch } from "../../hooks/useFetch";
-import Skeleton from "../../components/Skeleton";
+import { useFetch } from "@/hooks/useFetch";
+import Skeleton from "@/components/Skeleton";
 
 function Register() {
     const [isSuccess, setIsSuccess] = useState(false);

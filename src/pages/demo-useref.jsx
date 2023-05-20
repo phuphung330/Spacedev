@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { useRef } from "react";
-import Input from "../components/Input/index";
+import Input from "@/components/Input";
 import { useEffect } from "react";
 import { forwardRef } from "react";
 

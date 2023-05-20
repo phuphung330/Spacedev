@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React from "react";
 import styled from "styled-components";
 const ErrorS = styled.span`
@@ -19,7 +20,7 @@ const ErrorS = styled.span`
         100% {
             transform: translateX(10px);
         }
-    } ;
+    }
 `;
 
 function Field({
@@ -31,7 +32,7 @@ function Field({
     ...props
 }) {
     return (
-        <label className='relative'>
+        <label className={classNames("relative", { error: error })}>
             <p>
                 {label} {required && <span>*</span>}
             </p>

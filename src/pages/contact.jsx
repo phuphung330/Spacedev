@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import Field from "../components/Field/index";
-import { useForm } from "../hooks/useForm";
-import { required, regexp } from "../utils/validate";
-import { organizationServices } from "../services/organization";
+import Field from "@/components/Field/index";
+import { useForm } from "@/hooks/useForm";
+import { required, regexp } from "@/utils/validate";
+import { organizationServices } from "@/services/organization";
 import { message } from "antd";
-import Button from "../components/Button";
-import { useAsync } from "../hooks/useAsync";
+import Button from "@/components/Button";
+import { useAsync } from "@/hooks/useAsync";
 function Contact() {
     const { excute, loading } = useAsync(organizationServices.contact);
     // const [loading, setLoading] = useState(false);

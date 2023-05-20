@@ -120,7 +120,7 @@ const Testimonial = () => {
                                 <div className='ct ct-3'>
                                     <div className='info'>
                                         <div className='name'>
-                                            <h4>Lê Thị Thanh Vân</h4>
+                                            <h4>Lê Thanh Tân</h4>
                                             <p>Thành viên Spacedev 3</p>
                                         </div>
                                         <div className='quotes'>

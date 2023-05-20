@@ -1,6 +1,8 @@
 import React from "react";
+import { useScrollTop } from "@/hooks/useScrollTop";
 
 function Coin() {
+    useScrollTop();
     return (
         <main id='main'>
             <div className='paypage'>

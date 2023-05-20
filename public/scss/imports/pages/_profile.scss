@@ -111,6 +111,7 @@
                 background: white;
                 padding-top: 50px;
                 label {
+                    
                     display: flex;
                     align-items: center;
                     margin-bottom: 20px;
@@ -192,6 +193,12 @@
                     }
                     &.flex-start {
                         align-items: flex-start;
+                    }
+                }
+                .error{
+                    margin-bottom: 30px;
+                    span{
+                        left:213px;
                     }
                 }
 

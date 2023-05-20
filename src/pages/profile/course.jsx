@@ -1,6 +1,8 @@
 import React from "react";
 
+
 function ProfileCourse() {
+
     return (
         <div
             className='tab2'

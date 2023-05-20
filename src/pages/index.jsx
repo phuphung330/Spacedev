@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-import ListCourse from "../components/ListCourse";
-import Modal from "../components/Modal";
-import Slider from "../components/Slider";
-import Testimonial from "../components/Testimonial";
-import { useScrollTop } from "../hooks/useScrollTop";
-import Gallery from "../components/Gallery";
+import ListCourse from "@/components/ListCourse";
+import Modal from "@/components/Modal";
+import Slider from "@/components/Slider";
+import Testimonial from "@/components/Testimonial";
+import { useScrollTop } from "@/hooks/useScrollTop";
+import Gallery from "@/components/Gallery";
 
 function Home() {
     useScrollTop();
@@ -127,24 +127,7 @@ function Home() {
                         </div>
                     </div>
                 </section>
-                {/* <section class="section-3">
-            <div class="container">
-                <div class="video">
-                    <iframe id="video-intro"
-                        src="https://www.youtube-nocookie.com/embed/6t-MjBazs3o?controls=0&showinfo=0&rel=0&enablejsapi=1&version=3&playerapiid=ytplayer"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen allowscriptaccess="always"></iframe>
-      
-                    <div class="video-src" data-src="video/Spacedev-video-intro.mp4"></div>
-                    <div class="play-btn btn-video-intro">
-                        <img src="img/play-video-btn.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </section> */}
                 <Testimonial />
-
                 <Gallery />
                 <section className='section-action'>
                     <div className='container'>

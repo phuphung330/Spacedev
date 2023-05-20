@@ -1,17 +1,21 @@
 import React from "react";
 import { useState } from "react";
 import { generatePath, useParams, Link } from "react-router-dom";
-import { Accordion } from "../../components/Accordion";
-import CourseCards from "../../components/CourseCards";
-import ListCourse from "../../components/ListCourse";
-import Skeleton from "../../components/Skeleton";
-import { PATH } from "../../config/path";
-import { useFetch } from "../../hooks/useFetch";
-import { useScrollTop } from "../../hooks/useScrollTop";
-import { courseService } from "../../services/course";
-import { Currency } from "../../utils/currency";
+import { Accordion } from "@/components/Accordion";
+import CourseCards from "@/components/CourseCards";
+
+import Skeleton from "@/components/Skeleton";
+import { PATH } from "@/config/path";
+import { useFetch } from "@/hooks/useFetch";
+import { useScrollTop } from "@/hooks/useScrollTop";
+import { courseService } from "@/services/course";
+import { Currency } from "@/utils/currency";
+import moment from "moment/moment";
+import { color } from "@/utils/color";
+import Modal from "@/components/Modal";
 
 function CourseDetail() {
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const { id } = useParams();
     useScrollTop([id]);
 
@@ -60,20 +64,23 @@ function CourseDetail() {
         slug: detail.slug,
         id: detail.id,
     });
+    const openTime = moment(detail.opening_time).format("DD/MM/YYYY");
 
     return (
         <main id='main'>
             <div className='course-detail'>
                 <section
                     className='banner style2'
-                    style={{ "--background": "#cde6fb" }}
+                    style={{
+                        "--background": `${color(detail, "banner")}`,
+                    }}
                 >
                     <div className='container'>
                         <div className='info'>
                             <h1>{detail.title}</h1>
                             <div className='row'>
                                 <div className='date'>
-                                    <strong>Khai giảng:</strong> 12/10/2020
+                                    <strong>Khai giảng:</strong> {openTime}
                                 </div>
                                 <div className='time'>
                                     <strong>Thời lượng:</strong> 18 buổi
@@ -81,7 +88,9 @@ function CourseDetail() {
                             </div>
                             <Link
                                 className='btn white round'
-                                style={{ "--color-btn": "#70b6f1" }}
+                                style={{
+                                    "--color-btn": `${color(detail, "btn")}`,
+                                }}
                                 to={path}
                             >
                                 đăng ký
@@ -91,13 +100,37 @@ function CourseDetail() {
                     <div className='bottom'>
                         <div className='container'>
                             <div className='video'>
-                                <div className='icon'>
-                                    <img
-                                        src='/img/play-icon-white.png'
-                                        alt=''
-                                    />
-                                </div>{" "}
-                                <span>giới thiệu</span>
+                                <Modal
+                                    isMaskClose
+                                    visible={isOpenModal}
+                                    onCancel={() => {
+                                        setIsOpenModal(false);
+                                    }}
+                                >
+                                    <iframe
+                                        width='800'
+                                        height='500'
+                                        src='https://www.youtube.com/embed/8pDqJVdNa44'
+                                        title='YouTube video player'
+                                        frameborder='0'
+                                        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                                        allowfullscreen
+                                    ></iframe>
+                                </Modal>
+                                <div
+                                    onClick={() => {
+                                        setIsOpenModal(true);
+                                    }}
+                                    className='flex items-center justify-center'
+                                >
+                                    <div className='icon'>
+                                        <img
+                                            src='/img/play-icon-white.png'
+                                            alt=''
+                                        />
+                                    </div>{" "}
+                                    <span>giới thiệu</span>
+                                </div>
                             </div>
                             <div className='money'>
                                 {Currency(detail.money)}đ
@@ -123,33 +156,19 @@ function CourseDetail() {
 
                         <h3 className='title'>yêu cầu cần có</h3>
                         <div className='row row-check'>
-                            <div className='col-md-6'>
-                                Đã từng học qua HTML, CSS
-                            </div>
-                            <div className='col-md-6'>
-                                Cài đặt phần mềm Photoshop, Adobe illustrator,
-                                Skype
-                            </div>
+                            {detail?.required?.map((e, i) => (
+                                <div key={i} {...e} className='col-md-6'>
+                                    {e.content}
+                                </div>
+                            ))}
                         </div>
                         <h3 className='title'>hình thức học</h3>
                         <div className='row row-check'>
-                            <div className='col-md-6'>
-                                Học offline tại văn phòng, cùng Vương Đặng và 3
-                                đồng nghiệp.
-                            </div>
-                            <div className='col-md-6'>
-                                Dạy và thực hành thêm bài tập online thông qua
-                                Skype.
-                            </div>
-                            <div className='col-md-6'>
-                                Được các mentor và các bạn trong team Spacedev
-                                hổ trợ thông qua group Spacedev Facebook hoặc
-                                phần mềm điều khiển máy tính.
-                            </div>
-                            <div className='col-md-6'>
-                                Thực hành 2 dự án thực tế với sự hướng dẫn của
-                                Spacedev Team.
-                            </div>
+                            {detail?.benefits?.map((e, i) => (
+                                <div key={i} {...e} className='col-md-6'>
+                                    {e.content}
+                                </div>
+                            ))}
                         </div>
                         <h3 className='title'>
                             <div className='date-start'>lịch học</div>
@@ -159,9 +178,8 @@ function CourseDetail() {
                             </div>
                         </h3>
                         <p>
-                            <strong>Ngày bắt đầu: </strong> 09/09/2020 <br />
-                            <strong>Thời gian học: </strong> Thứ 3 từ
-                            18h45-21h45, Thứ 7 từ 12h-15h, Chủ nhật từ 15h-18h
+                            <strong>Ngày bắt đầu: </strong> {openTime} <br />
+                            <strong>Thời gian học: </strong> {detail.schedule}
                         </p>
                         <h3 className='title'>Người dạy</h3>
                         <div className='teaches'>
@@ -185,7 +203,7 @@ function CourseDetail() {
                                     ></p>
                                     <p>
                                         <strong>Website:</strong>{" "}
-                                        <a href='#'>
+                                        <a href='https://dangthuyenvuong.github.io/'>
                                             https://dangthuyenvuong.github.io/
                                         </a>
                                     </p>
@@ -194,12 +212,15 @@ function CourseDetail() {
                         </div>
                         <div className='bottom'>
                             <div className='user'>
-                                <img src='/img/user-group-icon.png' alt='' /> 12
-                                bạn đã đăng ký
+                                <img src='/img/user-group-icon.png' alt='' />{" "}
+                                {detail.number_student_default} bạn đã đăng ký
                             </div>
-                            <div className='btn main btn-register round'>
+                            <Link
+                                to={path}
+                                className='btn main btn-register round'
+                            >
                                 đăng ký
-                            </div>
+                            </Link>
                             <div className='btn-share btn overlay round btn-icon'>
                                 <img src='/img/facebook.svg' alt='' />
                             </div>

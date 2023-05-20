@@ -62,9 +62,9 @@ function SignIn() {
                                 </div>
                                 <p>Nhớ mật khẩu</p>
                             </label>
-                            <a href='./reset-password.html' className='forget'>
+                            <Link to={PATH.resetPassword} className='forget'>
                                 Quên mật khẩu?
-                            </a>
+                            </Link>
                         </div>
                         <Button
                             loading={loading}

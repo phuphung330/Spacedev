@@ -24,17 +24,15 @@ export const AuthProvider = ({ children }) => {
     // const [loading, setLoading] = useState(false);
     const [user, _setUser] = useState(getUser);
 
+    useEffect(() => {
+        setUser(user || null);
+    }, user);
     const login = async (data) => {
         try {
-            // setLoading(true);
             const res = await authService.login(data);
             if (res.data) {
                 setToken(res.data);
-                const user = await userService.getInfo();
-                setUser(user.data);
-                _setUser(user.data);
-                message.success("Đăng nhập thành công");
-                navigate(PATH.profile.index);
+                getProfile();
             }
         } catch (err) {
             console.log(err);
@@ -42,6 +40,12 @@ export const AuthProvider = ({ children }) => {
         } finally {
             // setLoading(false);
         }
+    };
+    const getProfile = async () => {
+        const user = await userService.getInfo();
+        _setUser(user.data);
+        message.success("Đăng nhập thành công");
+        navigate(PATH.profile.index);
     };
 
     const logout = () => {
@@ -51,7 +55,9 @@ export const AuthProvider = ({ children }) => {
         message.success("Đăng xuất thành công");
     };
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider
+            value={{ user, login, logout, setUser: _setUser, getProfile }}
+        >
             {children}
         </AuthContext.Provider>
     );
