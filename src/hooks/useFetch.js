@@ -14,6 +14,7 @@ export const useFetch = (promise, dependencyList = []) => {
             setLoading(true);
             setStatus("pending");
             const res = await promise();
+
             setData(res);
 
             setStatus("success");

@@ -3,6 +3,7 @@ import { generatePath, Link } from "react-router-dom";
 import { PATH } from "../../config/path";
 import { Currency } from "../../utils/currency";
 import Skeleton from "../Skeleton";
+import { ThumbnailDefault } from "@/config";
 
 function CourseCards({
     id,
@@ -20,7 +21,14 @@ function CourseCards({
         <div className='col-md-4 course'>
             <div className='wrap'>
                 <Link className='cover' to={path}>
-                    <img src={thumbnailUrl} alt='' />
+                    <img
+                        src={thumbnailUrl}
+                        alt=''
+                        onError={(e) => {
+                            e.target.src =
+                                "../../public/img/thumbnail-default.jpg";
+                        }}
+                    />
                 </Link>
                 <div className='info'>
                     <Link className='name' to={path}>
@@ -35,9 +43,7 @@ function CourseCards({
                         </div>
                         <div className='name'>{teacher.title}</div>
                     </div>
-                    <a href='/register.html' className='register-btn'>
-                        {Currency(money)}đ
-                    </a>
+                    <a className='register-btn'>{Currency(money)}đ</a>
                 </div>
             </div>
         </div>

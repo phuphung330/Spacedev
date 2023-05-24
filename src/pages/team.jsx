@@ -17,132 +17,63 @@ function Team() {
                         <div className='item col-md-6 col-sm-6'>
                             <div className='wrap'>
                                 <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
+                                    <img src='img/team/vuong.jpg' alt='' />
                                 </div>
                                 <div className='info'>
                                     <div className='name'>Vương Đặng</div>
-                                    <p className='title'>
-                                        Founder &amp; spacedev.vneloper
-                                    </p>
+                                    <p className='title'>Spacedev Founder</p>
                                 </div>
                             </div>
                         </div>
+
                         <div className='item col-md-6 col-sm-6'>
                             <div className='wrap'>
                                 <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
+                                    <img src='img/team/vuong.jpg' alt='' />
                                 </div>
                                 <div className='info'>
                                     <div className='name'>
-                                        đặng thuyền vương
+                                        Đặng Thuyền Vương
                                     </div>
-                                    <p className='title'>
-                                        Co-Founder &amp; Fullstack Developer
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item col-md-6 col-sm-6'>
-                            <div className='wrap'>
-                                <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
-                                </div>
-                                <div className='info'>
-                                    <div className='name'>đặng thuyền quân</div>
-                                    <p className='title'>
-                                        Co-Founder &amp; Backend Developer
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item col-md-6 col-sm-6'>
-                            <div className='wrap'>
-                                <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
-                                </div>
-                                <div className='info'>
-                                    <div className='name'>Nguyễn Văn A</div>
                                     <p className='title'>
                                         Co-Founder &amp; Front-End Developer
                                     </p>
                                 </div>
                             </div>
                         </div>
-                        <div className='item col-md-3 col-sm-4 col-xs-6'>
+                        <div className='item col-md-4 col-sm-4 col-xs-6'>
                             <div className='wrap'>
                                 <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
+                                    <img src='img/team/kiet.jpg' alt='' />
                                 </div>
                                 <div className='info'>
-                                    <div className='name'>Diệp anh thy</div>
+                                    <div className='name'>Huỳnh Anh Kiệt</div>
                                     <p className='title'>Spacedev1-Offline</p>
                                 </div>
                             </div>
                         </div>
-                        <div className='item col-md-3 col-sm-4 col-xs-6'>
+                        <div className='item col-md-4 col-sm-4 col-xs-6'>
                             <div className='wrap'>
                                 <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
-                                </div>
-                                <div className='info'>
-                                    <div className='name'>huỳnh tiến tài</div>
-                                    <p className='title'>Spacedev1-Offline</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item col-md-3 col-sm-4 col-xs-6'>
-                            <div className='wrap'>
-                                <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
-                                </div>
-                                <div className='info'>
-                                    <div className='name'>Ngô thành long</div>
-                                    <p className='title'>Spacedev1-Offline</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item col-md-3 col-sm-4 col-xs-6'>
-                            <div className='wrap'>
-                                <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
-                                </div>
-                                <div className='info'>
-                                    <div className='name'>trần anh tuấn</div>
-                                    <p className='title'>Spacedev1-Offline</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item col-md-3 col-sm-4 col-xs-6'>
-                            <div className='wrap'>
-                                <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
-                                </div>
-                                <div className='info'>
-                                    <div className='name'>ngô thành long</div>
-                                    <p className='title'>Spacedev1-Offline</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='item col-md-3 col-sm-4 col-xs-6'>
-                            <div className='wrap'>
-                                <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
+                                    <img src='img/team/thien.jpg' alt='' />
                                 </div>
                                 <div className='info'>
                                     <div className='name'>
-                                        nguyễn thành tùng
+                                        Lê Châu Hữu Thiện
                                     </div>
                                     <p className='title'>Spacedev1-Offline</p>
                                 </div>
                             </div>
                         </div>
-                        <div className='item col-md-3 col-sm-4 col-xs-6'>
+                        <div className='item col-md-4 col-sm-4 col-xs-6'>
                             <div className='wrap'>
                                 <div className='cover'>
-                                    <img src='img/avt.png' alt='' />
+                                    <img src='img/team/an.jpg' alt='' />
                                 </div>
                                 <div className='info'>
-                                    <div className='name'>phạm thành trung</div>
+                                    <div className='name'>
+                                        Nguyễn Văn Thái An
+                                    </div>
                                     <p className='title'>Spacedev1-Offline</p>
                                 </div>
                             </div>

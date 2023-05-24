@@ -36,7 +36,7 @@ const Slider = () => {
                     </div>
                 </div>
                 <div className='jarallax-img'>
-                    <img src='/img/banner1.jpg' alt='' />
+                    <img src='/img/bg-cover.jpg' alt='' />
                 </div>
             </div>
             <div className='item'>
@@ -53,7 +53,7 @@ const Slider = () => {
                     </div>
                 </div>
                 <div className='jarallax-img'>
-                    <img src='/img/banner2.jpg' alt='' />
+                    <img src='/img/bg-cover1.jpg' alt='' />
                 </div>
             </div>
             <div className='item'>

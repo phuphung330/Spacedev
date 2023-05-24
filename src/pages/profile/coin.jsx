@@ -10,7 +10,7 @@ function ProfileCoin() {
                     </h3>
                     <div className='coininfo__box-ct'>
                         <div>
-                            <img src='/img/Spacedev-coin.png' alt='' />
+                            <img src='/img/cfd-coin.png' alt='' />
                             <p>
                                 Bạn có <strong>300</strong> COIN
                             </p>

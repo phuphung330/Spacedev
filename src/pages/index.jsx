@@ -7,6 +7,8 @@ import Slider from "@/components/Slider";
 import Testimonial from "@/components/Testimonial";
 import { useScrollTop } from "@/hooks/useScrollTop";
 import Gallery from "@/components/Gallery";
+import { PATH } from "@/config/path";
+import { Link } from "react-router-dom";
 
 function Home() {
     useScrollTop();
@@ -30,9 +32,9 @@ function Home() {
                         </div>
                         <ListCourse limit='?limit=6' />
                         <div className='flex justify-center'>
-                            <a href='./course-list.html' className='btn main'>
+                            <Link to={PATH.course} className='btn main'>
                                 Tất cả khóa học
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </section>
@@ -134,7 +136,12 @@ function Home() {
                         <h3>
                             Học thử trước khi đăng ký khóa học tại Spacedev?
                         </h3>
-                        <div className='btn main round bg-white'>Học thử</div>
+                        <Link
+                            to={PATH.course}
+                            className='btn main round bg-white'
+                        >
+                            Học thử
+                        </Link>
                     </div>
                 </section>
             </div>

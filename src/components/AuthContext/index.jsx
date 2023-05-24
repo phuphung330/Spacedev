@@ -12,7 +12,7 @@ import {
     clearUser,
 } from "../../utils/token";
 import { userService } from "../../services/user";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PATH } from "../../config/path";
 
 const AuthContext = createContext({});
@@ -21,6 +21,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
+    const { state } = useLocation();
     // const [loading, setLoading] = useState(false);
     const [user, _setUser] = useState(getUser);
 
@@ -45,7 +46,11 @@ export const AuthProvider = ({ children }) => {
         const user = await userService.getInfo();
         _setUser(user.data);
         message.success("Đăng nhập thành công");
-        navigate(PATH.profile.index);
+        if (state?.redirect) {
+            navigate(state.redirect);
+        } else {
+            navigate(PATH.profile.index);
+        }
     };
 
     const logout = () => {
