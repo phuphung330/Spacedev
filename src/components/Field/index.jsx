@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 const ErrorS = styled.span`
     position: absolute;
@@ -35,6 +35,7 @@ function Field({
         <label className={classNames("relative", { error: error })}>
             <p>
                 {label} {required && <span>*</span>}
+                
             </p>
             {renderInput ? (
                 renderInput?.(props)
@@ -46,4 +47,8 @@ function Field({
     );
 }
 
-export default Field;
+export default memo(Field, (oldProps, newProps) => {
+    return (
+        oldProps.value === newProps.value && oldProps.error === newProps.error
+    );
+});

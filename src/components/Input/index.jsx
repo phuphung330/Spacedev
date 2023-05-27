@@ -4,9 +4,10 @@ import classNames from "classnames";
 import { forwardRef } from "react";
 import { useImperativeHandle } from "react";
 import { useRef } from "react";
+import { memo } from "react";
 
-const Input = forwardRef(
-    ({ className, error, type = "text", ...props }, ref) => {
+const Input = memo(
+    forwardRef(({ className, error, type = "text", ...props }, ref) => {
         const inputRef = useRef();
         useImperativeHandle(
             ref,
@@ -19,14 +20,19 @@ const Input = forwardRef(
             },
             []
         );
+
         return (
             <InputStyle
                 className={classNames(className, { "mb-5 error": error })}
             >
                 <input ref={inputRef} {...props} type={type} />
+
                 {error && <ErrorText>{error}</ErrorText>}
             </InputStyle>
         );
+    }),
+    (oldProps, newProps) => {
+        return oldProps.value === newProps.value;
     }
 );
 

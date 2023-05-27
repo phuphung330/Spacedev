@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useState } from "react";
 import { generatePath, useParams, Link } from "react-router-dom";
 import { Accordion } from "@/components/Accordion";
@@ -13,6 +13,7 @@ import { Currency } from "@/utils/currency";
 import moment from "moment/moment";
 import { color } from "@/utils/color";
 import Modal from "@/components/Modal";
+import { useEffect } from "react";
 
 function CourseDetail() {
     const [isOpenModal, setIsOpenModal] = useState(false);
@@ -23,10 +24,24 @@ function CourseDetail() {
         () => courseService.getCourseDetail(id),
         [id]
     );
+
     const { data: related } = useFetch(
         () => courseService.getRelated(id),
         [id]
     );
+    const { data: detail } = data || {};
+
+    const { path, openTime } = useMemo(() => {
+        if (detail) {
+            const path = generatePath(PATH.courseRegister, {
+                slug: detail.slug,
+                id: detail.id,
+            });
+            const openTime = moment(detail.opening_time).format("DD/MM/YYYY");
+            return { path, openTime };
+        }
+        return {};
+    }, [detail]);
 
     if (loading) {
         return (
@@ -57,14 +72,6 @@ function CourseDetail() {
             </div>
         );
     }
-
-    const { data: detail } = data;
-
-    const path = generatePath(PATH.courseRegister, {
-        slug: detail.slug,
-        id: detail.id,
-    });
-    const openTime = moment(detail.opening_time).format("DD/MM/YYYY");
 
     return (
         <main id='main'>

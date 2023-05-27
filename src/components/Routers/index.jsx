@@ -25,6 +25,7 @@ import ProfileCourseReview from "../../pages/profile/course-review";
 import Page404 from "../../pages/404";
 import Demo from "../../pages/demo";
 import DemoRef from "../../pages/demo-useref";
+import DemoReactjs from "@/pages/demo-reactjs";
 export const routers = [
     {
         element: <MainLayout />,
@@ -32,6 +33,7 @@ export const routers = [
             { index: true, element: <Home /> },
             { path: "/demo", element: <Demo /> },
             { path: "/demo-ref", element: <DemoRef /> },
+            { path: "/demo-reactjs", element: <DemoReactjs /> },
             {
                 path: PATH.course,
                 children: [

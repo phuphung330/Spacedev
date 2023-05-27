@@ -195,6 +195,7 @@ function Register() {
                                     required
                                     placeholder='Email của bạn'
                                     {...Register("email")}
+                                    disabled
                                 />
                                 <Field
                                     label='URL Facebook'
@@ -213,6 +214,7 @@ function Register() {
                                     )}
                                 />
                                 <Field
+                                    required
                                     label='Hình thức thanh toán'
                                     {...Register("payment")}
                                     renderInput={(props) => (
