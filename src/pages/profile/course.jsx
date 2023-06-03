@@ -48,7 +48,7 @@ function ProfileCourse() {
                                     alt=''
                                     onError={(e) => {
                                         e.target.src =
-                                            "../../public/img/thumbnail-default.jpg";
+                                            "/img/thumbnail-default.jpg";
                                     }}
                                 />
                             </Link>

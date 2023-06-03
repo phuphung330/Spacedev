@@ -55,7 +55,6 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
     const logout = useCallback(() => {
-        console.log("logout");
         clearUser();
         clearToken();
         _setUser(null);

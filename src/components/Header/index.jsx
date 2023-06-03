@@ -3,12 +3,15 @@ import { useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { PATH } from "../../config/path";
 import { useAuth } from "../AuthContext";
-import { avatarDefault } from "../../config";
+
 import { AvatarConfig } from "../../utils/avatar";
+
 function Header() {
     let location = useLocation();
     const { user, logout } = useAuth();
+
     const avatar = AvatarConfig(user);
+
     useEffect(() => {
         onCloseToggle();
     }, [location]);

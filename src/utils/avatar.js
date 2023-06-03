@@ -1,10 +1,12 @@
-import { avatarDefault } from "../config";
+import { avatarDefault } from "@/config";
 export const AvatarConfig = (user) => {
     if (user === null) {
         return avatarDefault;
+    } else {
+        if (user.avatar) {
+            return user.avatar;
+        } else {
+            return avatarDefault;
+        }
     }
-    if (user.avatar === null) {
-        user.avatar = avatarDefault;
-    }
-    return user.avatar;
 };

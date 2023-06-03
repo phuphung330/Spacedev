@@ -25,8 +25,7 @@ function CourseCards({
                         src={thumbnailUrl}
                         alt=''
                         onError={(e) => {
-                            e.target.src =
-                                "../../public/img/thumbnail-default.jpg";
+                            e.target.src = "/img/thumbnail-default.jpg";
                         }}
                     />
                 </Link>
