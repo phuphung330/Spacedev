@@ -13,7 +13,7 @@ import { forwardRef } from "react";
 
 //
 // lấy từ ref.current ,lưu ý là ref sẽ trả về 1 object **//
-const CountStyle = styled.div`
+export const CountStyle = styled.div`
     border: 1px solid #ccc;
     padding: 40px;
 

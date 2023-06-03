@@ -14,6 +14,8 @@ import {
 import { userService } from "../../services/user";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PATH } from "../../config/path";
+import { useCallback } from "react";
+import { useMemo } from "react";
 
 const AuthContext = createContext({});
 
@@ -28,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         setUser(user || null);
     }, user);
-    const login = async (data) => {
+    const login = useCallback(async (data) => {
         try {
             const res = await authService.login(data);
             if (res.data) {
@@ -41,8 +43,8 @@ export const AuthProvider = ({ children }) => {
         } finally {
             // setLoading(false);
         }
-    };
-    const getProfile = async () => {
+    }, []);
+    const getProfile = useCallback(async () => {
         const user = await userService.getInfo();
         _setUser(user.data);
         message.success("Đăng nhập thành công");
@@ -51,19 +53,19 @@ export const AuthProvider = ({ children }) => {
         } else {
             navigate(PATH.profile.index);
         }
-    };
-
-    const logout = () => {
+    }, []);
+    const logout = useCallback(() => {
+        console.log("logout");
         clearUser();
         clearToken();
         _setUser(null);
         message.success("Đăng xuất thành công");
-    };
+    }, []);
+
+    const value = useMemo(() => {
+        return { user, login, logout, setUser: _setUser, getProfile };
+    }, [user, login, logout, _setUser, getProfile]);
     return (
-        <AuthContext.Provider
-            value={{ user, login, logout, setUser: _setUser, getProfile }}
-        >
-            {children}
-        </AuthContext.Provider>
+        <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
     );
 };

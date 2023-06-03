@@ -8,22 +8,22 @@
   }
   
   .progress-loader {
-    width: 150px;
+    width: 220px;
     background: #ccc;
-    height: 4px;
+    height: 6.5px;
     border-radius: 7px;
   }
   
   .progress {
     content: '';
     width: 1px;
-    height: 4px;
+    height: 6.5px;
     border-radius: 7px;
     background: $main-cl;
     -webkit-transition: 0.5s;
     transition: 0.5s;
-    -webkit-animation: loading1274 2s ease infinite;
-            animation: loading1274 2s ease infinite;
+    -webkit-animation: loading1274 2.5s ease infinite;
+            animation: loading1274 2.5s ease infinite;
   }
   
   @-webkit-keyframes loading1274 {
@@ -67,5 +67,23 @@
   
     100% {
       width: 100%;
+    }
+  }
+
+  .fallback {
+    animation-name: fade-in-out;
+    animation-duration: 5s; // Change this value to set the delay time in seconds
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
     }
   }

@@ -35,7 +35,7 @@ function ProfileCourse() {
                     Bạn chưa đăng ký khoá học nào{" "}
                 </div>
             ) : (
-                courses.data.map((e) => {
+                courses?.data?.map((e) => {
                     const path = generatePath(PATH.courseDetail, {
                         slug: e.course.slug,
                         id: e.course.id,

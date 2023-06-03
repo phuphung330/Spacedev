@@ -16,7 +16,7 @@ api.interceptors.response.use(
         try {
             if (
                 error.response.status === 403 &&
-                error.response.status_code === "TOKEN_EXPIRED"
+                error.response.data.error_code === "TOKEN_EXPIRED"
             ) {
                 const token = getToken();
                 //refresh token

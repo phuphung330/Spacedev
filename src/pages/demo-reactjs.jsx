@@ -7,62 +7,31 @@ import { required } from "@/utils/validate";
 import Button from "@/components/Button";
 import { useEffect } from "react";
 import { useState } from "react";
-import ProgressLoader from "@/components/ProgressLoader";
+
+import { useAuth } from "@/components/AuthContext";
+import { CountStyle } from "./demo-useref";
+import { useReducer } from "react";
+// const innitialState = { count: 0 };
 
 const DemoReactjs = () => {
-    const [random, setRandom] = useState(Math.random());
-    useEffect(() => {
-        setInterval(() => {
-            setRandom(Math.random());
-        }, 1000);
-    }, []);
-    let inputRef = useRef();
+    // const [random, setRandom] = useState(Math.random());
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         setRandom(Math.random());
+    //     }, 1000);
+    // }, []);
 
-    useEffect(() => {
-        inputRef.current.setValue("phu phung");
-    }, []);
-    const { validate, Register } = useForm({
-        username: [required()],
-    });
+    // const RandomNum = random;
+    // let inputRef = useRef();
 
-    const onSubmit = (ev) => {
-        ev.preventDefault();
-        if (validate()) {
-            window.alert("submit thanh cong");
-        }
-    };
+    // useEffect(() => {
+    //     inputRef.current.setValue("phu phung");
+    // }, []);
+
     return (
-        <main className='main'>
-            <div className='auth'>
-                <div className='wrap'>
-                    <h2 className='title'>Đăng ký</h2>
-                    <Input
-                        ref={inputRef}
-                        {...Register("username")}
-                        placeholder='Email của bạn'
-                    />
-
-                    <p className='policy'>
-                        Bằng việc đăng kí, bạn đã đồng ý{"  "}
-                        <a href='#'>Điều khoản bảo mật</a> của Spacedev
-                    </p>
-                    <Button onClick={onSubmit} className='mt-4'>
-                        Đăng ký
-                    </Button>
-                    <div>
-                        <img
-                            style={{ width: 60, height: 60 }}
-                            src='./img/logo-test.gif'
-                        ></img>
-                        <ProgressLoader />
-                    </div>
-                    <div className='text-register flex justify-center items-center'>
-                        <span>Bạn đã có tài khoản?</span>
-                        {"  "}
-                    </div>
-                </div>
-            </div>
-        </main>
+        <CountStyle style={{ flexDirection: "row" }}>
+            <Button></Button>
+        </CountStyle>
     );
 };
 

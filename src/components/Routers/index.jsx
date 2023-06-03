@@ -1,31 +1,60 @@
-import MainLayout from "../../layouts/MainLayout";
-import Home from "../../pages";
-import { PATH } from "../../config/path";
-import CourseDetail from "../../pages/course/[slug]-id[id]";
-import Register from "../../pages/register/[slug]-id[id]";
-import Coin from "../../pages/coin";
-import Contact from "../../pages/contact";
-import Faq from "../../pages/faq";
-import Course from "../../pages/course";
-import Team from "../../pages/team";
-import Project from "../../pages/project";
-import Payment from "../../pages/payment";
-import AuthRouter from "../AuthRouter";
-import SignIn from "../../pages/signin";
-import SignUp from "../../pages/signup";
-import ResetPassword from "../../pages/reset-password";
-import PrivateRouter from "../PrivateRouter";
-import ProfileLayout from "../../layouts/ProfileLayout";
-import Profile from "../../pages/profile";
-import ProfileCourse from "../../pages/profile/course";
-import ProfileProject from "../../pages/profile/project";
-import ProfilePayment from "../../pages/profile/payment";
-import ProfileCoin from "../../pages/profile/coin";
-import ProfileCourseReview from "../../pages/profile/course-review";
-import Page404 from "../../pages/404";
-import Demo from "../../pages/demo";
-import DemoRef from "../../pages/demo-useref";
+import { PATH } from "@/config/path";
+
+import Demo from "@/pages/demo";
+import DemoRef from "@/pages/demo-useref";
 import DemoReactjs from "@/pages/demo-reactjs";
+import { lazy } from "react";
+
+const loadComponent = (path, interval = 250) => {
+    return new Promise((resolve) => setTimeout(() => resolve(path), interval));
+};
+
+const SignIn = lazy(() => loadComponent(import("@/pages/signin")));
+// const SignIn = lazy(() => {
+//     setTimeout(import("@/pages/signin")), 1000;
+// });
+const CourseDetail = lazy(() =>
+    loadComponent(import("@/pages/course/[slug]-id[id]"))
+);
+const Register = lazy(() =>
+    loadComponent(import("@/pages/register/[slug]-id[id]"))
+);
+const Coin = lazy(() => loadComponent(import("@/pages/coin")));
+const Contact = lazy(() => loadComponent(import("@/pages/contact")));
+const Faq = lazy(() => loadComponent(import("@/pages/faq")));
+const Course = lazy(() => loadComponent(import("@/pages/course")));
+const Team = lazy(() => loadComponent(import("@/pages/team")));
+const Project = lazy(() => loadComponent(import("@/pages/project")));
+const Payment = lazy(() => loadComponent(import("@/pages/payment")));
+const AuthRouter = lazy(() => loadComponent(import("@/components/AuthRouter")));
+const SignUp = lazy(() => loadComponent(import("@/pages/signup")));
+const ResetPassword = lazy(() =>
+    loadComponent(import("@/pages/reset-password"))
+);
+const PrivateRouter = lazy(() =>
+    loadComponent(import("@/components/PrivateRouter"))
+);
+const ProfileLayout = lazy(() =>
+    loadComponent(import("@/layouts/ProfileLayout"))
+);
+const Profile = lazy(() => loadComponent(import("@/pages/profile")));
+const ProfileCourse = lazy(() =>
+    loadComponent(import("@/pages/profile/course"))
+);
+const ProfileProject = lazy(() =>
+    loadComponent(import("@/pages/profile/project"))
+);
+const ProfilePayment = lazy(() =>
+    loadComponent(import("@/pages/profile/payment"))
+);
+const ProfileCoin = lazy(() => loadComponent(import("@/pages/profile/coin")));
+const ProfileCourseReview = lazy(() =>
+    loadComponent(import("@/pages/profile/course-review"))
+);
+const Page404 = lazy(() => loadComponent(import("@/pages/404")));
+const MainLayout = lazy(() => loadComponent(import("@/layouts/MainLayout")));
+const Home = lazy(() => loadComponent(import("@/pages")));
+
 export const routers = [
     {
         element: <MainLayout />,

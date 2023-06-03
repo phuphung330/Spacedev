@@ -9,10 +9,18 @@ import { useScrollTop } from "@/hooks/useScrollTop";
 import Gallery from "@/components/Gallery";
 import { PATH } from "@/config/path";
 import { Link } from "react-router-dom";
+import { useQuery } from "@/hooks/useQuery";
+import { courseService } from "@/services/course";
+import CourseCards, { CardLoading } from "@/components/CourseCards";
 
 function Home() {
     useScrollTop();
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const { data: { data: courses = [] } = {}, loading } = useQuery({
+        queryFn: () => courseService.getCourse("?limit=6"),
+        queryKey: "courses",
+        cacheTime: 10000,
+    });
     return (
         <main id='main'>
             <div className='homepage'>
@@ -30,7 +38,16 @@ function Home() {
                             <h3 className='sub-title'>KHÓA HỌC</h3>
                             <h2 className='main-title'>OFFLINE</h2>
                         </div>
-                        <ListCourse limit='?limit=6' />
+                        <div className='list row'>
+                            {loading
+                                ? Array.from(Array(6)).map((_, i) => (
+                                      <CardLoading key={i} />
+                                  ))
+                                : courses.map((e) => (
+                                      <CourseCards key={e.id} {...e} />
+                                  ))}
+                        </div>
+                        {/* <ListCourse limit='?limit=6' /> */}
                         <div className='flex justify-center'>
                             <Link to={PATH.course} className='btn main'>
                                 Tất cả khóa học

@@ -14,22 +14,36 @@ import moment from "moment/moment";
 import { color } from "@/utils/color";
 import Modal from "@/components/Modal";
 import { useEffect } from "react";
+import { useQuery } from "@/hooks/useQuery";
 
 function CourseDetail() {
     const [isOpenModal, setIsOpenModal] = useState(false);
     const { id } = useParams();
     useScrollTop([id]);
 
-    const { data, loading } = useFetch(
-        () => courseService.getCourseDetail(id),
-        [id]
-    );
+    const { data: { data: detail } = {}, loading } = useQuery({
+        queryFn: () => courseService.getCourseDetail(id),
+        queryKey: `course-${id}`,
+        storeDriver: "sessionStorage",
+        // dependencyList: [id],
+    });
 
-    const { data: related } = useFetch(
-        () => courseService.getRelated(id),
-        [id]
-    );
-    const { data: detail } = data || {};
+    // const { data, loading } = useFetch(
+    //     () => courseService.getCourseDetail(id),
+    //     [id]
+    // );
+
+    // const { data: related } = useFetch(
+    //     () => courseService.getRelated(id),
+    //     [id]
+    // );
+
+    const { data: related } = useQuery({
+        queryFn: () => courseService.getRelated(id),
+        queryKey: `course-related-${id}`,
+        storeDriver: "sessionStorage",
+    });
+    // const { data: detail } = data || {};
 
     const { path, openTime } = useMemo(() => {
         if (detail) {

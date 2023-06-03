@@ -30,114 +30,30 @@ import PrivateRouter from "./components/PrivateRouter";
 import AuthRouter from "./components/AuthRouter";
 import { routers } from "./components/Routers";
 import "../public/dest/custom.css";
+import Loading from "./components/Loading";
+import { Suspense } from "react";
 
 function App() {
-    // const [user, setUser] = useState(() => {
-    //     try {
-    //         return JSON.parse(localStorage.getItem("user"));
-    //     } catch (error) {
-    //         return null;
-    //     }
-    // const [user, setUser] = useState({});
-    // });
-    // const login = () => {
-    //     setUser({
-    //         name: "Phung Le Phu",
-    //         avatar: "/img/avt.png",
-    //     });
-    // };
-
-    // const logout = () => {
-    //     setUser();
-    // };
-
-    // useEffect(() => {
-    //     localStorage.setItem("user", JSON.stringify(user));
-    // }, [user]);
-
+    const [loading, setLoading] = useState(true);
     const element = useRoutes(routers);
 
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+        return () => clearTimeout(timeOut);
+    }, []);
+
     return (
-        <>
-            {element}
-            {/* <Routes>
-                <Route element={<MainLayout user={user} logout={logout} />}>
-                    <Route index element={<Home />} />
-                    <Route path={PATH.course}>
-                        <Route index element={<Course />} />
-                        <Route
-                            path={PATH.courseDetail}
-                            element={<CourseDetail />}
-                        />
-                    </Route>
-
-                    <Route path={PATH.courseRegister} element={<Register />} />
-
-                    <Route path={PATH.contact} element={<Contact />} />
-                    <Route path={PATH.payment} element={<Payment />} />
-                    <Route path={PATH.project} element={<Project />} />
-                    <Route path={PATH.faq} element={<Faq />} />
-                    <Route path={PATH.coin} element={<Coin />} />
-                    <Route path={PATH.team} element={<Team />} />
-
-                    <Route
-                        element={
-                            <AuthRouter
-                                user={user}
-                                redirect={PATH.profile.index}
-                            />
-                        }
-                    >
-                        <Route
-                            path={PATH.signin}
-                            element={<SignIn login={login} />}
-                        />
-                        <Route path={PATH.signup} element={<SignUp />} />
-                        <Route
-                            path={PATH.resetPassword}
-                            element={<ResetPassword />}
-                        />
-                    </Route>
-
-                    <Route
-                        element={
-                            <PrivateRouter user={user} redirect={PATH.signin} />
-                        }
-                    >
-                        <Route
-                            path={PATH.profile.index}
-                            element={<ProfileLayout user={user} />}
-                        >
-                            <Route index element={<Profile />} />
-                            <Route
-                                path={PATH.profile.course}
-                                element={<ProfileCourse />}
-                            />
-                            <Route
-                                path={PATH.profile.project}
-                                element={<ProfileProject />}
-                            />
-                            <Route
-                                path={PATH.profile.payment}
-                                element={<ProfilePayment />}
-                            />
-                            <Route
-                                path={PATH.profile.coin}
-                                element={<ProfileCoin />}
-                            />
-                            <Route
-                                path={PATH.profile.courseReview}
-                                element={<ProfileCourseReview />}
-                            />
-                        </Route>
-                    </Route>
-
-                    <Route path='*' element={<Page404 />} />
-                </Route>
-            </Routes> */}
-
-            {/* <Register /> */}
-        </>
+        <div>
+            {loading ? (
+                <div className='fallback'>
+                    <Loading />
+                </div>
+            ) : (
+                <Suspense fallback={<Loading />}>{element}</Suspense>
+            )}
+        </div>
     );
 }
 

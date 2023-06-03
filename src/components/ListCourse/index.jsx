@@ -1,13 +1,20 @@
+import { useQuery } from "@/hooks/useQuery";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { courseService } from "../../services/course";
 import CourseCards, { CardLoading } from "../CourseCards";
 import Skeleton from "../Skeleton";
 
-function ListCourse({ limit }) {
-    const { data: courses, loading } = useFetch(() =>
-        courseService.getCourse(limit)
-    );
+function ListCourse() {
+    // const { data: courses, loading } = useFetch(() =>
+    //     courseService.getCourse(limit)
+    // );
+
+    const { data: { data: courses = [] } = {}, loading } = useQuery({
+        queryFn: () => courseService.getCourse(),
+        queryKey: "coursess-list",
+        cacheTime: 10000,
+    });
 
     // const [loading, setLoading] = useState(true);
     // const [courses, setCourses] = useState([]);
@@ -28,7 +35,7 @@ function ListCourse({ limit }) {
         <div className='list row'>
             {loading
                 ? Array.from(Array(6)).map((_, i) => <CardLoading key={i} />)
-                : courses.data.map((e) => <CourseCards key={e.id} {...e} />)}
+                : courses.map((e) => <CourseCards key={e.id} {...e} />)}
         </div>
         // <section className='section-1'>
         //     <div className='container'>
